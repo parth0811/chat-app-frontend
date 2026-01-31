@@ -21,7 +21,8 @@ import animationData from "../animation/typing.json";
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal.jsx";
 import { ChatState } from "../Context/ChatProvider.jsx";
-const ENDPOINT = "http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
+const API_URL = import.meta.env.VITE_API_URL;
+const ENDPOINT = import.meta.env.VITE_API_URL;
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -57,7 +58,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       setLoading(true);
 
       const { data } = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/message/${selectedChat._id}`,
+        `${API_URL}/api/message/${selectedChat._id}`,
         config,
       );
       setMessages(data);
@@ -88,7 +89,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         };
         setNewMessage("");
         const { data } = await axios.post(
-          `${process.env.REACT_APP_API_URL}/api/message`,
+          `${API_URL}/api/message`,
           {
             content: newMessage,
             chatId: selectedChat,

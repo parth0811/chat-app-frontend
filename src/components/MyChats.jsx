@@ -8,6 +8,7 @@ import ChatLoading from "./ChatLoading.jsx";
 import GroupChatModal from "./miscellaneous/GroupChatModal.jsx";
 import { Button } from "@chakra-ui/react";
 import { ChatState } from "../Context/ChatProvider.jsx";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
@@ -25,7 +26,7 @@ const MyChats = ({ fetchAgain }) => {
         },
       };
 
-      const { data } = await axios.get("/api/chat", config);
+      const { data } = await axios.get(`${API_URL}/api/chat`, config);
       setChats(data);
     } catch (error) {
       toast({

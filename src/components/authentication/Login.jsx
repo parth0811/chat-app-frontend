@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ChatState } from "../../Context/ChatProvider.jsx";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -36,7 +37,7 @@ const Login = () => {
         headers: { "Content-type": "application/json" },
       };
 
-      const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/api/user/login`, { email, password }, config);
+      const { data } = await axios.post(`${API_URL}/api/user/login`, { email, password }, config);
 
       toast({
         title: "Login Successful",

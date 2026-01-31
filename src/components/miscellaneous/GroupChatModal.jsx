@@ -18,6 +18,7 @@ import { useState } from "react";
 import { ChatState } from "../../Context/ChatProvider.jsx";
 import UserBadgeItem from "../UserAvatar/UserBadgeItem.jsx";
 import UserListItem from "../UserAvatar/UserListItem.jsx";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const GroupChatModal = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -58,7 +59,7 @@ const GroupChatModal = ({ children }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/api/user?search=${search}`, config);
+      const { data } = await axios.get(`${API_URL}/api/user?search=${search}`, config);
       console.log(data);
       setLoading(false);
       setSearchResult(data);
@@ -97,7 +98,7 @@ const GroupChatModal = ({ children }) => {
         },
       };
       const { data } = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/chat/group`,
+        `${API_URL}/api/chat/group`,
         {
           name: groupChatName,
           users: JSON.stringify(selectedUsers.map((u) => u._id)),

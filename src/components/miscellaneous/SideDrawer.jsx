@@ -29,6 +29,7 @@ import ProfileModal from "./ProfileModal.jsx";
 import { getSender } from "../../config/ChatLogics.js";
 import UserListItem from "../UserAvatar/UserListItem.jsx";
 import { ChatState } from "../../Context/ChatProvider.jsx";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function SideDrawer() {
   const [search, setSearch] = useState("");
@@ -70,7 +71,7 @@ function SideDrawer() {
       setLoading(true);
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
       const { data } = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/user?search=${search}`,
+        `${API_URL}/api/user?search=${search}`,
         config,
       );
       setSearchResult(data);
@@ -98,7 +99,7 @@ function SideDrawer() {
         },
       };
       const { data } = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/chat`,
+        `${API_URL}/api/chat`,
         { userId },
         config,
       );

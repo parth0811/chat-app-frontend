@@ -6,6 +6,7 @@ import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Signup = () => {
   const [show, setShow] = useState(false);
@@ -51,7 +52,7 @@ const Signup = () => {
         },
       };
       const { data } = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/user`,
+        `${API_URL}/api/user`,
         {
           name,
           email,
